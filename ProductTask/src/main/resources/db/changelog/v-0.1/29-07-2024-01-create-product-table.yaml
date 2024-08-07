@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 29_07_2024_create_product_table
+      author: amilmammad
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: category_id
+                  type: int
+
+
+        - addForeignKeyConstraint:
+            constraintName: fk_product_category
+            baseTableName: product
+            baseColumnNames: category_id
+            referencedTableName: category
+            referencedColumnNames: id
+  - changeSet:
+      id: 29_07_2024_create_seq_product_table
+      author: amilmammad
+      changes:
+        - createSequence:
+            sequenceName: product_seq
+            incrementBy: 1
+

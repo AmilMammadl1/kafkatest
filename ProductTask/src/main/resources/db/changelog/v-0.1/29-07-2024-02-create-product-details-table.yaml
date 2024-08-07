@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 29_07_2024_create_product_details_table
+      author: amilmammad
+      changes:
+        - createTable:
+            tableName: product_details
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: color
+                  type: varchar(255)
+              - column:
+                  name: image_url
+                  type: varchar(255)
+              - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: product_details
+            baseColumnNames: product_id
+            constraintName: fk_product_details_product
+            referencedTableName: product
+            referencedColumnNames: id
+
+  - changeSet:
+      id: 29_07_2024_create_seq_details_table
+      author: amilmammad
+      changes:
+        - createSequence:
+            sequenceName: details_seq
+            incrementBy: 1

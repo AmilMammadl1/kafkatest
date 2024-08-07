@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7_29_2024_create_country_table_2
+      author: amilmammad
+      changes:
+        - createTable:
+            tableName: country
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: population
+                  type: BIGINT
+
+  - changeSet:
+      id: 29_07_2024_create_seq_country_table_2
+      author: amilmammad
+      changes:
+        - createSequence:
+            sequenceName: country_seq
+            incrementBy: 1

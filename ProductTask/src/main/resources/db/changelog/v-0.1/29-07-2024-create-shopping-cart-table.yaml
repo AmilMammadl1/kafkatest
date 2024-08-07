@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 29_07_2024_create_shopping_carts_table
+      author: amilmammad
+      changes:
+        - createTable:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+        - createTable:
+            tableName: menus_categories
+            columns:
+              - column:
+                  name: carts_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: menus_categories
+            baseColumnNames: carts_id
+            constraintName: fk_menus_categories_carts
+            referencedTableName: shopping_carts
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: menus_categories
+            baseColumnNames: product_id
+            constraintName: fk_menus_categories_product
+            referencedTableName: product
+            referencedColumnNames: id
+
+  - changeSet:
+      id: 29_07_2024_create_seq_carts_table
+      author: amilmammad
+      changes:
+        - createSequence:
+            sequenceName: carts_seq
+            incrementBy: 1

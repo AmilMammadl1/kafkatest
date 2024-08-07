@@ -1,0 +1,36 @@
+logging:
+  level:
+    root: info
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/alasDb
+    username: alas
+    password: alas
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    open-in-view: true
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+url:
+  ignore:
+    swagger: /v2/api-docs, /webjars/*, /swagger-resources/, /actuator/health, /swagger-ui/index.html, /swagger-ui.html, /app//.{js,html}
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+server:
+  port: 8081

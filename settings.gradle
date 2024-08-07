@@ -1,0 +1,4 @@
+rootProject.name = 'kafkatest'
+include 'commen'
+include 'ProductTask'
+include 'test2'
